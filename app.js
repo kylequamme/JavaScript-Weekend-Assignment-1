@@ -29,9 +29,10 @@ var totalPayedOut = 0;
 for(var i = 0; i < claimsList.length; i++){
 	totalPayedOut += amountCovered(claimsList[i])
 }
-console.log(Math.round(totalPayedOut));
+console.log('$' + Math.round(totalPayedOut));
 
-// for testing amountCovered(claim1);
+// for testing
+//amountCovered(claim1);
 
 function Claim(name, type, cost){
 	this.patientName = name;
@@ -41,22 +42,31 @@ function Claim(name, type, cost){
 
 //function to determine percent covered
 function percentCovered(c){
-	 var percent = 0;
-	if(c[1] === 'Optical'){
+	if(c.visitType === 'Optical'){
 		return 0;
 	}else if (c.visitType === 'Specialist'){
-		return 10;
+		return .10;
 	}else if (c.visitType === 'Emergency') {
-		return 100;
+		return 1;
 	}else if (c.visitType === 'Primary Care') {
-		return 50;
+		return .50;
 	}else{
 		return 'Error! Unidentified care type'
 	}
 }
+
 //function to determine amount covered
 function amountCovered(c) {
-	var costCovered = c.visitCost * (percentCovered(c) / 100)
-	console.log('Paid out $' + costCovered + ' for ' + c.patientName);
+	var costCovered = c.visitCost * percentCovered(c);
+	var output = 'Paid out $' + costCovered + ' for ' + c.patientName;
+	console.log(output);
 	return costCovered;
+}
+
+//display percentage
+function display(cc) {
+    var para = document.createElement("P");
+    var t = document.createTextNode(cc);
+    para.appendChild(t);
+    document.getElementById("myDIV").appendChild(para);
 }
