@@ -19,5 +19,21 @@ function Claim(name, type, cost){
 }
 
 //function to determine percent covered
-
+function percentCovered(claim){
+	 var percent = 0;
+	if(claim[1] === 'Optical'){
+		return 0;
+	}else if (claim[1] === 'Specialist'){
+		return 10;
+	}else if (claim[1] === 'Emergency') {
+		return 100;
+	}else if (claim[1] === 'Primary Care') {
+		return 50;
+	}else{
+		return 'Error! Unidentified care type'
+	}
+}
 //function to determine amount covered
+function amountCovered(claim) {
+
+}
