@@ -12,6 +12,8 @@ var initialList = [claim1, claim2, claim3, claim4, claim5]
 
 var totalPayedOut = 0;
 
+console.log(amountCovered(claim1));
+
 function Claim(name, type, cost){
 	this.patientName = name;
 	this.visitType = type;
@@ -19,21 +21,21 @@ function Claim(name, type, cost){
 }
 
 //function to determine percent covered
-function percentCovered(claim){
+function percentCovered(c){
 	 var percent = 0;
-	if(claim[1] === 'Optical'){
+	if(c[1] === 'Optical'){
 		return 0;
-	}else if (claim[1] === 'Specialist'){
+	}else if (c.visitType === 'Specialist'){
 		return 10;
-	}else if (claim[1] === 'Emergency') {
+	}else if (c.visitType === 'Emergency') {
 		return 100;
-	}else if (claim[1] === 'Primary Care') {
+	}else if (c.visitType === 'Primary Care') {
 		return 50;
 	}else{
 		return 'Error! Unidentified care type'
 	}
 }
 //function to determine amount covered
-function amountCovered(claim) {
-
+function amountCovered(c) {
+	return c.visitCost * (percentCovered(c) / 100)
 }
