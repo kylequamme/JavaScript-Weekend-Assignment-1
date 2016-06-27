@@ -27,13 +27,18 @@ var claimsList = initialList.concat(secondList);
 var totalPayedOut = 0;
 
 for(var i = 0; i < claimsList.length; i++){
-	totalPayedOut += amountCovered(claimsList[i])
+	totalPayedOut += amountCovered(claimsList[i]);
 }
 
 console.log(Math.round(totalPayedOut).toLocaleString('en-us', {style: 'currency', currency: 'USD'}));
 
-// for testing
-//amountCovered(claim1);
+
+$( document ).ready(function() {
+	for(var i = 0; i < claimsList.length; i++){
+		$( ".mainOutput" ).append('<p>Paid out ' + amountCovered(claimsList[i]).toLocaleString('en-us', {style: 'currency', currency: 'USD'}) + ' for ' + claimsList[i].patientName);
+	}
+	$( ".mainOutput" ).append('<p> Total paid out: ' + Math.round(totalPayedOut).toLocaleString('en-us', {style: 'currency', currency: 'USD'}));
+});
 
 function Claim(name, type, cost){
 	this.patientName = name;
