@@ -29,7 +29,8 @@ var totalPayedOut = 0;
 for(var i = 0; i < claimsList.length; i++){
 	totalPayedOut += amountCovered(claimsList[i])
 }
-console.log('$' + Math.round(totalPayedOut));
+
+console.log(Math.round(totalPayedOut).toLocaleString('en-us', {style: 'currency', currency: 'USD'}));
 
 // for testing
 //amountCovered(claim1);
@@ -58,15 +59,7 @@ function percentCovered(c){
 //function to determine amount covered
 function amountCovered(c) {
 	var costCovered = c.visitCost * percentCovered(c);
-	var output = 'Paid out $' + costCovered + ' for ' + c.patientName;
+	var output = 'Paid out ' + costCovered.toLocaleString('en-us', {style: 'currency', currency: 'USD'}) + ' for ' + c.patientName;
 	console.log(output);
 	return costCovered;
-}
-
-//display percentage
-function display(cc) {
-    var para = document.createElement("P");
-    var t = document.createTextNode(cc);
-    para.appendChild(t);
-    document.getElementById("myDIV").appendChild(para);
 }
